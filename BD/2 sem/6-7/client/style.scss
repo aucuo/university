@@ -1,0 +1,145 @@
+html {
+  font-size: 14px;
+  background-color: #1f1f1f !important;
+}
+
+body {
+  background-color: #1f1f1f !important;
+  --bs-body-bg: #1f1f1f;
+  --bs-body-color-rgb: 110, 110, 110;
+}
+
+body, * {
+  color: #ffffff;
+  transition: .1s;
+
+  --sb-track-color: #1f1f1f;
+  --sb-thumb-color: #4e4e4e;
+  --sb-size: 5px;
+
+  &::-webkit-scrollbar {
+    width: var(--sb-size);
+    height: var(--sb-size);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 5px;
+  }
+}
+
+.form {
+  padding: 20px;
+  border: 1px solid #363636;
+  border-radius: 10px;
+  height: 100%;
+
+  &__header {
+    margin-bottom: 20px;
+    font-size: 32px;
+  }
+
+  &-control {
+    background-color: unset !important;
+    border-color: #363636;
+    color: #fff !important;
+    min-height: 200px !important;
+    max-height: 400px !important;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    label {
+      background-color: unset !important;
+
+      &:after {
+        background-color: unset;
+      }
+    }
+  }
+
+  &__button {
+    padding: 6px 32px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.error {
+  display: none;
+  background-color: #885757;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #363636;
+
+  &__sign {
+    color: #c48c8c;
+    font-weight: 500;
+  }
+}
+
+.latest {
+  &__comment {
+    color: #a4a4a4;
+    margin-bottom: 4px;
+  }
+
+  &__query {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #363636;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    &:hover {
+      background-color: #2c2c2c;
+    }
+  }
+}
+
+.result {
+  padding: 20px;
+  border: 1px solid #363636;
+  border-radius: 10px;
+
+  &__wrapper {
+    overflow-x: scroll;
+  }
+
+  &__table {
+    width: 100%;
+    --bs-table-color: #a4a4a4;
+    border-color: #363636;
+    user-select: none;
+    border-radius: 20px;
+    margin: 0;
+
+    tbody {
+
+      tr {
+        position: relative;
+        cursor: pointer;
+        color: #eaeaea;
+
+        &:hover {
+          --bs-table-color: #fff;
+          --bs-table-bg: #2c2c2c;
+        }
+      }
+    }
+  }
+}
