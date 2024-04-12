@@ -1,0 +1,59 @@
+﻿@page "/managers"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Managers</h3>
+
+@if (managers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var manager in managers)
+            {
+                <tr>
+                    <td>@manager.ManagerID</td>
+                    <td>@manager.Name</td>
+                    <td>@manager.Position</td>
+                    <td>
+                        <!-- Действия: Редактирование и Удаление -->
+                        <button class="btn btn-primary" @onclick="() => EditManager(manager.ManagerID)">Edit</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteManager(manager.ManagerID)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Manager>? managers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        managers = await Http.GetFromJsonAsync<List<Manager>>("api/Managers");
+    }
+
+    void EditManager(int managerId)
+    {
+        // Реализуйте переход на страницу редактирования
+        NavigationManager.NavigateTo($"/managers/edit/{managerId}");
+    }
+
+    async Task DeleteManager(int managerId)
+    {
+        await Http.DeleteAsync($"api/Managers/{managerId}");
+        managers = await Http.GetFromJsonAsync<List<Manager>>("api/Managers");
+    }
+}

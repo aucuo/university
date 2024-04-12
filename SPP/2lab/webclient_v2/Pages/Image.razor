@@ -1,0 +1,53 @@
+﻿@page "/image"
+@inject HttpClient Http
+
+<PageTitle>Image</PageTitle>
+
+<h3>Image</h3>
+
+<InputFile OnChange="HandleFileUpload" />
+
+@if (uploadResult != null)
+{
+    <p>@uploadResult</p>
+}
+
+@code {
+    private string uploadResult;
+
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            try
+            {
+                // Ensure there's a file and it's not too large (adjust the size as necessary)
+                if (file.Size > 10485760) // 10 MB
+                {
+                    uploadResult = "File is too large.";
+                    return;
+                }
+
+                var content = new MultipartFormDataContent();
+                var fileContent = new StreamContent(file.OpenReadStream(maxAllowedSize: 10485760)); // 10 MB limit
+                content.Add(fileContent, "file", file.Name);
+
+                var response = await Http.PostAsync("https://localhost:7180/api/Images", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    uploadResult = "Photo uploaded successfully.";
+                }
+                else
+                {
+                    uploadResult = $"Failed to upload photo. Status code: {response.StatusCode}";
+                }
+            }
+            catch (Exception ex)
+            {
+                uploadResult = $"Error: {ex.Message}";
+            }
+        }
+    }
+}

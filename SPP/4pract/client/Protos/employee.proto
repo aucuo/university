@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "client";
+
+package employees;
+
+message Employee {
+    int32 id = 1;
+    string name = 2;
+    string position = 3;
+}
+
+service Employees {
+    rpc GetEmployee (EmployeeRequest) returns (Employee);
+}
+
+message EmployeeRequest {
+    int32 employeeId = 1;
+}

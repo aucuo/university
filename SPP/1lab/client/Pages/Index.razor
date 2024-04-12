@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject HttpClient Http
+
+<PageTitle>Index</PageTitle>
+
+<h3>Message</h3>
+<p>@message</p>
+
+<button class="btn btn-primary" @onclick="FetchMessage">Получить сообщение</button>
+
+@code {
+    private string message = "Нажмите кнопку для получения сообщения.";
+
+    private async Task FetchMessage()
+    {
+        message = await Http.GetStringAsync("https://localhost:7183/message");
+    }
+}

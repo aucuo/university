@@ -1,0 +1,55 @@
+﻿@page "/json"
+
+<PageTitle>JSON</PageTitle>
+
+<h1>JSON</h1>
+
+<p role="status">Result: @ResponseMessage</p>
+
+<button class="btn btn-primary" @onclick="BtnSendJsonAsync">Click me</button>
+
+@inject HttpClient Http
+@inject HttpClient Http
+@using System.Net.Http
+@using System.Text
+@using System.Net.Http.Json
+@code {
+    private string result = "";
+
+    public class DataItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    private List<DataItem> dataItems = new List<DataItem>
+    {
+        new DataItem { Id = 1, Name = "Sample Item" }
+    };
+
+    public string ResponseMessage { get; set; }
+
+    private async Task BtnSendJsonAsync()
+    {
+
+
+        var json = System.Text.Json.JsonSerializer.Serialize(dataItems);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        try
+        {
+            var response = await Http.PostAsync("api/Data", content);
+            response.EnsureSuccessStatusCode();
+            var responseBody = await response.Content.ReadAsStringAsync();
+            ResponseMessage = $"Response: {responseBody}";
+        }
+        catch (HttpRequestException ex)
+        {
+            ResponseMessage = $"Error: {ex.Message}";
+        }
+        catch (Exception ex)
+        {
+            ResponseMessage = $"Unexpected error: {ex.Message}";
+        }
+    }
+}

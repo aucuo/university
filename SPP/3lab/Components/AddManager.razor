@@ -1,0 +1,31 @@
+﻿@page "/managers/add"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Add Manager</h3>
+
+<EditForm Model="@manager" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="manager.Name" />
+    </div>
+    <div class="form-group">
+        <label for="position">Position:</label>
+        <InputText id="position" class="form-control" @bind-Value="manager.Position" />
+    </div>
+    
+    <button type="submit" class="btn btn-success">Add</button>
+</EditForm>
+
+@code {
+    private Manager manager = new Manager();
+
+    private async Task HandleValidSubmit()
+    {
+        await Http.PostAsJsonAsync("api/Managers", manager);
+        NavigationManager.NavigateTo("/managers");
+    }
+}

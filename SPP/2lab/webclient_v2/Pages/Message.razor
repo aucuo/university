@@ -1,0 +1,31 @@
+﻿@page "/message"
+@inject HttpClient Http
+@using System.Text;
+@using System.Text.Json;
+@using Newtonsoft.Json;
+
+<PageTitle>Message</PageTitle>
+
+<h3>Message</h3>
+<p>@response</p>
+
+<button class="btn btn-primary" @onclick="PostMessage">Отправить сообщение</button>
+
+@code {
+    private HttpResponseMessage response;
+
+    private async Task PostMessage()
+    {
+        var message = new { Text = "Hello, World!" };
+        var json = JsonConvert.SerializeObject(message);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        response = await Http.PostAsync("https://localhost:7180/api/Messages", content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Error: {response.StatusCode}, Content: {responseContent}");
+        }
+    }
+}
