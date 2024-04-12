@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" modified="2023-11-15T19:15:14.096Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.837 YaBrowser/23.9.4.837 Yowser/2.5 Safari/537.36" etag="ncdazU2rsi7lRzbgRK1P" version="22.1.2" type="device" pages="2">
+  <diagram name="Страница — 1" id="rvek0hwfvR7EROld43r1">
+    <mxGraphModel dx="1002" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="it5mNF3_9w-mQJekl6dB-1" value="Тьютор" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8f8f8f;labelBackgroundColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="414" y="190" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-2" value="Предмет" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8f8f8f;labelBackgroundColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="450" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-3" value="Вопрос" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8f8f8f;labelBackgroundColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="320" y="280" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-4" value="Студент" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8f8f8f;labelBackgroundColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="100" y="420" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-5" value="Тест" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8f8f8f;labelBackgroundColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="140" y="190" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-6" value="Создает тест" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="110" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-7" value="Содержит тесты" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="310" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-8" value="Состоит из вопросов" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-9" value="Просматривает тесты" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="it5mNF3_9w-mQJekl6dB-11" value="Решение теста" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="300" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="x4RAQKQ0WbW-A5C8JaEY" name="Страница — 2">
+    <mxGraphModel dx="1002" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVAVr9Lfsp-dVOV9BFhO-1" target="qVAVr9Lfsp-dVOV9BFhO-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-1" value="Студент" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="509" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVAVr9Lfsp-dVOV9BFhO-2" target="qVAVr9Lfsp-dVOV9BFhO-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-2" value="Тьютор" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="199" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVAVr9Lfsp-dVOV9BFhO-3" target="qVAVr9Lfsp-dVOV9BFhO-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVAVr9Lfsp-dVOV9BFhO-3" target="qVAVr9Lfsp-dVOV9BFhO-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-3" value="Все точки зрения" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="qVAVr9Lfsp-dVOV9BFhO-4" target="qVAVr9Lfsp-dVOV9BFhO-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-4" value="Тест" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qVAVr9Lfsp-dVOV9BFhO-5" value="Вопрос" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

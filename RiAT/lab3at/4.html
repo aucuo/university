@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riat 3</title>
+</head>
+
+<body>
+    <div class="app">
+        <div class="app__text text">
+            <h1 class="text__name">Название</h1>
+            <button class="text__button">Сгенерировать картинку</button>
+        </div>
+        <img class="app__image" src="" alt="">
+    </div>
+
+    <script>
+        var url = "https://api.nasa.gov/planetary/apod?api_key=";
+        var token = "DxyNq9HXiIOkN1JS8yrAcQZ9a7J83SUZAHPFkHVp";
+        var id;
+        var image;
+        const buttonEl = document.querySelector(".text__button");
+        const nameEl = document.querySelector(".text__name");
+        const imgEl = document.querySelector(".app__image");
+
+        document.addEventListener('DOMContentLoaded', function () {
+            request();
+        });
+
+        buttonEl.addEventListener('click', event => {
+            request();
+        })
+
+        function request() {
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    id = data[0]["id"];
+                    image = data[0]["url"];
+                    nameEl.textContent = id;
+                    imgEl.src = image;
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+
+        }
+    </script>
+</body>
+
+</html>

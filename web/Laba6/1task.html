@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Кнопки для записи и стирания текста</title>
+</head>
+
+<body style="display: flex; flex-wrap: wrap;">
+    <div class="first"
+        style="width:100%; margin: 50px 0; background: #e7e7e7; display: inline-block; padding: 50px; border-radius: 20px;">
+        <button onclick="writeText('Это строка состояния')">Записать текст</button>
+        <button onclick="clearText()">Очистить текст</button>
+        <p>Строка состояния:</p>
+        <p id="status"></p>
+    </div>
+
+    <div class="second"
+        style="width:100%; margin: 50px 0; background: #e7e7e7; display: inline-block; padding: 50px; border-radius: 20px;">
+        <a href="dontclck.htm" onMouseOver="document.getElementById('status2').innerHTML = 'Don`t click me';"
+            onMouseOut="document.getElementById('status2').innerHTML = '';">ссылка</a>
+        <p>Строка состояния:</p>
+        <p id="status2"></p>
+    </div>
+
+    <div class="third"
+        style="width:100%; margin: 50px 0; background: #e7e7e7; display: inline-block; padding: 50px; border-radius: 20px;">
+        <button onclick="timer()">Показать окно</button>
+    </div>
+
+    <div class="fourth"
+        style="width:100%; margin: 50px 0; background: #e7e7e7; display: inline-block; padding: 50px; border-radius: 20px;">
+        <div>
+            <div style="width: fit-content;" id="scroller">Это бегущая строка!</div>
+        </div>
+    </div>
+
+    <script>
+        function writeText(text) {
+            document.getElementById("status").innerHTML = text;
+        }
+
+        function clearText() {
+            document.getElementById("status").innerHTML = "";
+        }
+        function timer() {
+            setTimeout("alert('Время и стекло!')", 3000);
+        }
+
+        // Бегущая строка
+        // Получить ссылку на элемент бегущей строки
+        var scroller = document.getElementById("scroller");
+
+        // Получить ширину бегущей строки
+        var width = scroller.offsetWidth;
+
+        // Начальное положение бегущей строки
+        var position = 0;
+
+        // Запустить цикл анимации бегущей строки
+        function animate() {
+            position += 1;
+            if (position > width) {
+                position = -width;
+            }
+            scroller.style.transform = "translateX(" + position + "px)";
+            window.requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+
+</html>

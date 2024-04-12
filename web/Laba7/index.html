@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laba7</title>
+</head>
+
+<body onload="displayDateTime(); startClock(); array()">
+    <style>
+        p {
+            font-size: 20px;
+        }
+    </style>
+
+    <div class="task"
+        style="background-color: #e4e4e4; width: fit-content; padding: 20px; margin: 10px; border-radius: 10px;">
+        <h2>Задание 1: текущая дата и время</h2>
+        <p id="datetime"></p> <!-- Место для отображения -->
+    </div>
+
+    <div class="task"
+        style="background-color: #e4e4e4; width: fit-content; padding: 20px; margin: 10px; border-radius: 10px;">
+        <h2>Задание 2: Часы</h2>
+        <canvas id="clock" width="200" height="200"></canvas>
+    </div>
+
+    <div class="task"
+        style="background-color: #e4e4e4; width: fit-content; padding: 20px; margin: 10px; border-radius: 10px;">
+        <h2>Задание 3: Массив</h2>
+        <p id="array"></p>
+    </div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    function array() {
+        myArray = new Array();
+        myArray[0] = "first element";
+        myArray[1] = "second element";
+        myArray[2] = "third element";
+        for (var i = 0; i < 3; i++) {
+            document.getElementById("array").innerHTML += myArray[i] + ' '; // Вывести на страницу
+        }
+    }
+    function displayDateTime() {
+        var now = new Date();
+        var datetime = now.toLocaleString(); // Получить текущую дату и время
+
+        document.getElementById("datetime").innerHTML = datetime; // Вывести на страницу
+    }
+    function startClock() {
+        var canvas = document.getElementById('clock');
+        var ctx = canvas.getContext('2d');
+
+        ctx.strokeStyle = "#000";
+        ctx.lineWidth = 5;
+
+        setInterval(function () {
+            drawClock(ctx);
+        }, 1000);
+    }
+
+    function drawClock(ctx) {
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+
+        //Очистить полотно
+        ctx.clearRect(0, 0, 200, 200);
+
+        //Рисуем круг диска
+        ctx.beginPath();
+        ctx.arc(100, 100, 80, -Math.PI / 2, (hour * 30 - 90) * Math.PI / 180, false);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(100, 100, 60, -Math.PI / 2, (minute * 6 - 90) * Math.PI / 180, false);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(100, 100, 40, -Math.PI / 2, (second * 6 - 90) * Math.PI / 180, false);
+        ctx.stroke();
+
+    }
+</script>

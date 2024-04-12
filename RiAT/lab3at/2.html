@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User List</h1>
+    <ul id="user-list"></ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        // Получаем ссылку на элемент ul для отображения списка пользователей
+        const userList = document.getElementById('user-list');
+
+        // Функция для получения и отображения списка пользователей
+        async function fetchUsers() {
+            try {
+                // Выполняем GET-запрос к JSONPlaceholder API для получения списка пользователей
+                const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+
+                // Очищаем текущий список пользователей
+                userList.innerHTML = '';
+
+                // Перебираем полученных пользователей и добавляем их в список
+                response.data.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${user.id}: ${user.name} (${user.email})`;
+                    userList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Ошибка при получении списка пользователей:', error.message);
+            }
+        }
+
+        // Вызываем функцию для получения и отображения списка пользователей
+        fetchUsers();
+
+
+    </script>
+</body>
+
+</html>

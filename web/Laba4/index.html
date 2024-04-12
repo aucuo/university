@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table style="background-color: #d9d9d9; width: fit-content; padding: 50px; margin:30px;">
+        <script language="JavaScript">
+            document.write("<tr><td>&nbsp;</td>");
+
+            for (i = 1; i < 10; i++) document.write("<td>" + i + "&nbsp;</td>");
+
+            document.write("</tr>");
+
+            for (i = 1; i < 10; i++) {
+
+                document.write("<tr><td>" + i + "&nbsp;</td>");
+
+                for (j = 1; j < 10; j++) {
+
+                    document.write("<td bgcolor='#00ffa0'>" + (i * j) + "&nbsp;</td>");
+
+                }
+
+                document.write("</tr>");
+
+            }
+        </script>
+    </table>
+
+    <div class="length" style="background-color: #d9d9d9; width: fit-content; padding: 50px; margin:30px;">
+        <p id="text">Cars</p>
+        <p id="text">Ships</p>
+        <p id="text">Planes</p>
+
+        <script>
+            document.write("<h1>List of paragraphs</h1>")
+            var x = document.getElementsByTagName("p"); for (i = 0; i < x.length; i++) {
+
+                document.write(i, ". ", x[i].innerHTML, "; ");
+            }
+        </script>
+    </div>
+
+    <div class="dynamicEditing" style="background-color: #d9d9d9; width: fit-content; padding: 50px; margin:30px;">
+        <p id="edit">This paragraph will be edited!</p>
+        <script>
+            document.getElementById("edit").innerHTML = "The text was edited!";
+        </script>
+    </div>
+
+    <div class="colors" style="background-color: #d9d9d9; width: fit-content; padding: 50px; margin:30px;">
+        <button style="color: red" onclick="red()">Red</button>
+        <button style="color: green" onclick="green()">Green</button>
+        <button style="color: blue" onclick="blue()">Blue</button>
+        <div id="area" style="width: 100px; height:100px; background-color:black; margin: 20px;"></div>
+        <script>
+            function red() {
+                document.getElementById("area").style.backgroundColor = "red";
+            }
+            function green() {
+                document.getElementById("area").style.backgroundColor = "green";
+            }
+            function blue() {
+                document.getElementById("area").style.backgroundColor = "blue";
+            }
+        </script>
+    </div>
+
+    <table style="background-color: #d9d9d9; width: fit-content; padding: 50px; margin:30px;">
+        <script language="JavaScript">
+            function getColor() {
+                r = Math.round(255.0 * Math.random()).toString(16);
+                g = Math.round(255.0 * Math.random()).toString(16);
+                b = Math.round(255.0 * Math.random()).toString(16);
+                c = r + g + b;
+                return c;
+            }
+            document.write("<tr><td>&nbsp;</td>");
+
+            for (i = 1; i < 10; i++) document.write("<td>" + i + "&nbsp;</td>");
+
+            document.write("</tr>");
+
+            for (i = 1; i < 10; i++) {
+                document.write("<tr><td>" + i + "&nbsp;</td>");
+
+                for (j = 1; j < 10; j++) {
+                    document.write("<td bgcolor='", getColor(), "'>" + (i * j) + "&nbsp;</td>");
+
+                }
+
+                document.write("</tr>");
+
+            }
+        </script>
+    </table>
+
+
+</body>
+
+</html>

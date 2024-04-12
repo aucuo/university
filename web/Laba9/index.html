@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laba9</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="gallery">
+        <img src="/img/img1.jpg" alt="Image 1" class="gallery-current">
+        <div class="gallery-thumbnails">
+            <img src="/img/img1.jpg" alt="Thumbnail 1">
+            <img src="/img/img2.png" alt="Thumbnail 2">
+            <img src="/img/img1.jpg" alt="Thumbnail 3">
+        </div>
+    </div>
+
+    <div class="file-list-cont">
+        <ul class="file-list">
+            <li>File 1</li>
+            <li>File 2</li>
+            <li>File 3</li>
+            <li>File 4</li>
+            <li>File 5</li>
+        </ul>
+    </div>
+
+    <div class="deposit-cont">
+        <div>
+            <label for="deposit-amount">Сумма вклада:</label>
+            <input type="number" id="deposit-amount" value="0">
+        </div>
+        <div>
+            <label for="deposit-interest">Процент:</label>
+            <input type="number" id="deposit-interest" value="0">
+        </div>
+        <div>
+            <label for="deposit-years">Срок вклада (лет):</label>
+            <input type="number" id="deposit-years" value="0">
+        </div>
+        <div>
+            <button id="calculate-btn">Рассчитать</button>
+        </div>
+        <div>
+            <label for="deposit-result">Итоговая сумма:</label>
+            <input type="text" id="deposit-result" disabled>
+        </div>
+    </div>
+
+    <script>
+        // 1
+        const gallery = document.querySelector('.gallery');
+        const thumbnails = document.querySelectorAll('.gallery-thumbnails img');
+        const current = document.querySelector('.gallery-current');
+
+        gallery.addEventListener('click', (event) => {
+            if (event.target.tagName === 'IMG') {
+                current.src = event.target.src;
+            }
+        });
+
+        thumbnails.forEach((thumbnail) => {
+            thumbnail.addEventListener('mouseover', () => {
+                current.src = thumbnail.src;
+            });
+        });
+
+        // 2
+        const fileList = document.querySelector('.file-list');
+        const files = fileList.querySelectorAll('li');
+
+        fileList.addEventListener('click', (event) => {
+            if (!event.ctrlKey && !event.metaKey) {
+                files.forEach((file) => {
+                    file.classList.remove('selected');
+                });
+            }
+
+            const selectedFile = event.target;
+            selectedFile.classList.toggle('selected');
+        });
+
+        fileList.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+        });
+
+        // 3
+        runOnKeys(() => console.log('Hello, World!'), 'KeyH', 'KeyW');
+
+        function runOnKeys(func, ...codes) {
+            const pressed = new Set();
+
+            document.addEventListener('keydown', (event) => {
+                pressed.add(event.code);
+
+                for (let code of codes) {
+                    if (!pressed.has(code)) {
+                        return;
+                    }
+                }
+
+                func();
+            });
+
+            document.addEventListener('keyup', (event) => {
+                pressed.delete(event.code);
+            });
+        }
+
+        // 4
+        const depositAmountInput = document.getElementById('deposit-amount');
+        const depositInterestInput = document.getElementById('deposit-interest');
+        const depositYearsInput = document.getElementById('deposit-years');
+        const depositResultInput = document.getElementById('deposit-result');
+        const calculateBtn = document.getElementById('calculate-btn');
+
+        function calculateDepositAmount() {
+            const initial = parseFloat(depositAmountInput.value);
+            const interest = parseFloat(depositInterestInput.value) / 100;
+            const years = parseFloat(depositYearsInput.value);
+            const result = Math.round(initial * (1 + interest * years));
+            depositResultInput.value = result;
+        }
+
+        depositAmountInput.addEventListener('input', calculateDepositAmount);
+        depositInterestInput.addEventListener('input', calculateDepositAmount);
+        depositYearsInput.addEventListener('input', calculateDepositAmount);
+        calculateBtn.addEventListener('click', calculateDepositAmount);
+
+    </script>
+</body>
+
+</html>

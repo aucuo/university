@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laba5</title>
+</head>
+
+<body>
+    <div class="form" style="display: flex; justify-content: center; align-items: center;">
+        <form action="" name="login" id="login" onsubmit="return CheckData()">
+            <div class="input" style="margin: 20px;">
+                <label for="" style="display: block;">Имя</label>
+                <input required type="text" name="name">
+            </div>
+            <div class="input" style="margin: 20px;">
+                <label for="" style="display: block;">Организация</label>
+                <input required type="text">
+            </div>
+            <div class="input" style="margin: 20px;">
+                <label for="" style="display: block;">Телефон</label>
+                <input required type="text" id="phone" name="phone">
+            </div>
+            <div class="input" style="margin: 20px;">
+                <label for="" style="display: block;">Email</label>
+                <input required type="text" id="email" name="email">
+            </div>
+            <button onclick="CheckData()" form="login" type="button" style="margin: 0 0 0 20px;">Отправить</button>
+            <button form="login" type="reset" style="margin: 0 20px;">Очистить</button>
+        </form>
+    </div>
+
+    <script>
+        function CheckData() {
+            ans = confirm("Вы уверены, что хотите отправить введенные данные ?");
+            if (ans) {
+                let email = document.forms["login"]["email"].value;
+                let phone = document.forms["login"]["phone"].value;
+                let name = document.forms["login"]["name"].value;
+                console.log(name)
+
+                if (!validateEmail(email)) {
+                    alert("Ошибка в почте!");
+                    return false;
+                }
+
+                if (!validatePhone(phone)) {
+                    alert("Ошибка в телефоне!");
+                    return false;
+                }
+
+                if (!validateName(name)) {
+                    alert("Ошибка в имени!");
+                    return false;
+                }
+                document.forms["login"].submit();
+            }
+        }
+
+        function validateName(name) {
+            var re = /^[A-Za-zА-Яа-я]+$/;
+            return re.test(String(name).toLowerCase());
+        }
+
+        function validateEmail(email) {
+            var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePhone(phone) {
+            var re = /^(?:\+375|375)?[\s-]?(?:25|29|33|44)[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+            return re.test(String(phone).toLowerCase());
+        }
+    </script>
+</body>
+
+</html>

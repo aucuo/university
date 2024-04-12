@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laba10</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="form">
+        <label>Выберите дату рождения:</label>
+        <input type="range" id="date-input" min="0" max="45136" value="0">
+        <div class="date-display">
+            <span id="date-display-day">1</span>
+            <span id="date-display-month">января</span>
+            <span id="date-display-year">2022</span>
+        </div>
+        <button onclick="submitForm()">Отправить</button>
+    </div>
+
+    <script>
+        const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+        function updateDateDisplay() {
+            const dateInput = document.getElementById('date-input');
+            const dayDisplay = document.getElementById('date-display-day');
+            const monthDisplay = document.getElementById('date-display-month');
+            const yearDisplay = document.getElementById('date-display-year');
+
+            const date = new Date(0, 0, 1);
+            date.setDate(date.getDate() + parseInt(dateInput.value));
+
+            dayDisplay.innerText = date.getDate();
+            monthDisplay.innerText = months[date.getMonth()];
+            yearDisplay.innerText = date.getFullYear();
+        }
+
+        const dateInput = document.getElementById('date-input');
+        dateInput.min = Math.floor((new Date(0, 0, 1) - new Date(0, 0, 1, 0, 0, 0, 0)) / (1000 * 60 * 60 * 24));
+        dateInput.max = Math.floor((new Date(2024, 0, 1) - new Date(0, 0, 1, 0, 0, 0, 0)) / (1000 * 60 * 60 * 24));
+        dateInput.addEventListener('input', updateDateDisplay);
+
+        updateDateDisplay();
+
+        function submitForm() {
+            const dateInput = document.getElementById('date-input');
+            const date = new Date(2022, 0, 1);
+            date.setDate(date.getDate() + parseInt(dateInput.value));
+
+            alert(date);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laba8</title>
+</head>
+
+<body>
+    <style>
+        p {
+            font-size: 20px;
+        }
+
+        #myDIV {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            background-color: lightblue;
+        }
+    </style>
+
+    <div class="task" style="width: fit-content; padding: 20px; margin: 10px 10px 150px 10px; border-radius: 10px;">
+        <layer id="layer1" name=pic style="position: absolute; z-index: 1;" left=0 top=100>
+            <img src="donut.png" width=160 height=120>
+        </layer>
+
+        <layer id="layer2" name=txt style="position: absolute; z-index: 0;" left=0 top=100>
+            <p size=+4><i> Layers-Demo </i></p>
+        </layer>
+    </div>
+
+    <div class="task"
+        style="background-color: #e4e4e4; width: fit-content; padding: 20px; margin: 10px; border-radius: 10px;">
+        <button onclick="myFunction()">Try it</button>
+
+        <div id="myDIV">
+            This is my DIV element.
+        </div>
+    </div>
+
+    <div class="task"
+        style="background-color: #e4e4e4; width: fit-content; padding: 20px; margin: 10px; border-radius: 10px;">
+        <button onclick="myFunction2()">Try it</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function myFunction() {
+        if (document.getElementById("myDIV").style.display == "block")
+            document.getElementById("myDIV").style.display = "none";
+        else
+            document.getElementById("myDIV").style.display = "block";
+    }
+
+    function myFunction2() {
+        if (document.getElementById("layer1").style.zIndex == 0)
+        {
+            document.getElementById("layer1").style.zIndex = 1;
+            document.getElementById("layer2").style.zIndex = 0;
+        }
+        else
+        {
+            document.getElementById("layer1").style.zIndex = 0;
+            document.getElementById("layer2").style.zIndex = 1;
+        }
+    }
+</script>

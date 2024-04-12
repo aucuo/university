@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+}
+.wrapper {
+    width: 100%;
+    min-height: 95vh;
+    padding: 20px;
+    background-color: blue;
+}
+.element__lpink {
+    background: #ff00c8;
+}
+.element__pink {
+    background: #ff0048;
+}
+.element__yellow {
+    background: #ffee00;
+}
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 95%;
+    padding: 2.5%;
+    height: fit-content;
+    background: #87005d;
+}
+.f-block {
+    margin-bottom: 20px;
+}
+.f-block .element__lpink {
+    width: 30%;
+    height: 250px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.f-block .element__lpink .element__yellow {
+    width: 100%;
+    height: 100%;
+}
+.f-block .element__pink {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+}
+.f-block .element__pink .element__yellow {
+    width: 30%;
+    height: 100%;
+}
+/* second block */
+.s-block .row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.s-block .element__pink {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    margin-bottom: 200px;
+}
+.s-block .element__lpink {
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+}
+.s-block .element__lpink .element__yellow {
+    width: 100%;
+    height: 100%;
+}
