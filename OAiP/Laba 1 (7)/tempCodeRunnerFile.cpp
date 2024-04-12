@@ -1,0 +1,1 @@
+        if (arr[i] == '-') isMinus = -1;
