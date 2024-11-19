@@ -1,0 +1,7 @@
+<h2>{{ book.title }}</h2>
+<p>Автор: {{ book.author }}</p>
+<p>Жанр: {{ book.genre }}</p>
+<p>Год издания: {{ book.year_published }}</p>
+<a href="{% url 'book_update' book.pk %}">Редактировать</a>
+<a href="{% url 'book_delete' book.pk %}">Удалить</a>
+<a href="{% url 'book_list' %}">Назад к списку</a>

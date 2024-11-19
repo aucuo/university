@@ -1,0 +1,3 @@
+fst line
+scnd line
+thrd line

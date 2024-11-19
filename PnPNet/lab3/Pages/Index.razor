@@ -1,0 +1,165 @@
+﻿@page "/"
+
+@using lab3.Models
+
+<h2>@(IsEditMode ? "Редактировать корабль" : "Добавить новый корабль")</h2>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ErrorMessage
+    </div>
+}
+
+<form class="mb-5">
+    <div class="form-floating mb-3">
+        <input class="form-control" id="name" @bind="NewShip.Name" />
+        <label class="form-label" for="cabin">Название корабля:</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="displacement" type="number" @bind="NewShip.Displacement" />
+        <label class="form-label" for="cabin">Водоизмещение (тонн):</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="type" @bind="NewShip.Type" />
+        <label class="form-label" for="cabin">Тип:</label>
+    </div>
+    <div class="d-flex justify-content-between gap-3">
+        <div class="form-floating mb-3 w-100">
+            <input class="form-control" id="cabin" @bind="NewCabin" placeholder="Добавить категорию каюты" />
+            <label class="form-label" for="cabin">Категории кают:</label>
+        </div>
+        <button class="btn btn-secondary" style="height: 58px;" type="button" @onclick="AddCabin">Добавить</button>
+    </div>
+    <ul class="list-group">
+        @foreach (var cabin in NewShip.CabinCategories)
+        {
+            <li class="list-group-item">@cabin</li>
+        }
+    </ul>
+    <button class="btn btn-primary w-100 mt-3" style="height: 58px" type="button" @onclick="SaveShip">
+        @(IsEditMode ? "Сохранить изменения" : "Добавить корабль")
+    </button>
+</form>
+
+<h3>Список кораблей</h3>
+<ul class="list-group">
+    @foreach (var ship in Ships)
+    {
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+            @ship.Name - @ship.Type - @ship.Displacement тонн
+            
+            <div class="d-flex gap-3">
+                <button class="btn btn-secondary" type="button" @onclick="() => EditShip(ship)">Редактировать</button>
+                <button class="btn btn-secondary" type="button" @onclick="() => DeleteShip(ship)">Удалить</button>
+            </div>
+        </li>
+    }
+</ul>
+
+@code {
+    public PassengerShip NewShip { get; set; } = new PassengerShip();
+    public List<PassengerShip> Ships { get; set; } = new List<PassengerShip>();
+    public string NewCabin { get; set; }
+    public string ErrorMessage { get; set; } = string.Empty;  // Поле для хранения сообщения об ошибке
+    public bool IsEditMode { get; set; } = false;  // Флаг для режима редактирования
+    private int? EditingShipIndex { get; set; } = null;  // Индекс редактируемого корабля
+
+    public void AddCabin()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(NewCabin))
+            {
+                throw new CabinCategoryException("Категория каюты не может быть пустой.");
+            }
+
+            NewShip.CabinCategories.Add(NewCabin);
+            NewCabin = string.Empty;
+            ErrorMessage = string.Empty;  // Очищаем сообщение об ошибке, если всё прошло успешно
+        }
+        catch (CabinCategoryException ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = "Произошла ошибка: " + ex.Message;
+        }
+    }
+
+    public void SaveShip()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(NewShip.Name))
+            {
+                throw new ShipException("Название корабля не может быть пустым.");
+            }
+
+            if (NewShip.Displacement <= 0)
+            {
+                throw new ShipException("Водоизмещение должно быть больше нуля.");
+            }
+
+            if (IsEditMode && EditingShipIndex.HasValue)
+            {
+                // Сохранение изменений в существующем корабле
+                Ships[EditingShipIndex.Value] = NewShip;
+                IsEditMode = false;
+                EditingShipIndex = null;
+            }
+            else
+            {
+                // Добавление нового корабля
+                Ships.Add(NewShip);
+            }
+
+            // Сброс формы после добавления/редактирования
+            NewShip = new PassengerShip();
+            ErrorMessage = string.Empty;  // Очищаем сообщение об ошибке
+        }
+        catch (ShipException ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = "Произошла ошибка: " + ex.Message;
+        }
+    }
+
+    public void EditShip(PassengerShip ship)
+    {
+        // Устанавливаем режим редактирования
+        NewShip = new PassengerShip
+            {
+                Name = ship.Name,
+                Displacement = ship.Displacement,
+                Type = ship.Type,
+                CabinCategories = new List<string>(ship.CabinCategories)
+            };
+        IsEditMode = true;
+        EditingShipIndex = Ships.IndexOf(ship);  // Запоминаем индекс редактируемого корабля
+        ErrorMessage = string.Empty;  // Очищаем сообщение об ошибке при редактировании
+    }
+
+    public void DeleteShip(PassengerShip ship)
+    {
+        try
+        {
+            Ships.Remove(ship);
+            if (IsEditMode && EditingShipIndex.HasValue && Ships[EditingShipIndex.Value] == ship)
+            {
+                // Если редактируемый корабль был удален, сбросить режим редактирования
+                IsEditMode = false;
+                EditingShipIndex = null;
+            }
+            ErrorMessage = string.Empty;  // Очищаем сообщение об ошибке при успешном удалении
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = "Произошла ошибка при удалении: " + ex.Message;
+        }
+    }
+}
